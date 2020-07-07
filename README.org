@@ -1,0 +1,3 @@
+#+TITLE: EXWM GDM
+
+Launch [[https://github.com/ch11ng/exwm][EXWM]] from [[https://wiki.gnome.org/Projects/GDM][GDM]].
