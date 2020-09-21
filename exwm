@@ -1,0 +1,6 @@
+#!/bin/bash
+
+exwmrc="${XDG_CONFIG_HOME:-$HOME/.config}/exwm/exwmrc"
+
+[[ ! -f "$exwmrc" ]] && exwmrc="/etc/exwm/exwmrc"
+. "$exwmrc"

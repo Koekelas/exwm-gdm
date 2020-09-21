@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=EXWM
+TryExec=/usr/bin/exwm
+Exec=/usr/bin/exwm
+DesktopNames=EXWM

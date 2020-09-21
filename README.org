@@ -1,3 +1,50 @@
 #+TITLE: EXWM GDM
 
 Launch [[https://github.com/ch11ng/exwm][EXWM]] from [[https://wiki.gnome.org/Projects/GDM][GDM]].
+
+* Motivation
+Cobbling together a desktop environment doesn't appeal to me. Reusing
+GNOME lets me focus on what does. GDM launches a rootless Xorg,
+sources =.profile=, unlocks the keyring, etc.
+
+* Getting started
+To get started, run:
+
+#+BEGIN_SRC sh
+  git clone https://github.com/Koekelas/exwm-gdm.git
+#+END_SRC
+
+Then, to install, provided =/usr= and =/etc= are correct (they are on
+[[https://ubuntu.com/desktop][Ubuntu]], [[https://www.archlinux.org/][Arch Linux]] and likely other GNU/Linux distributions), run from
+this directory:
+
+#+BEGIN_SRC sh
+  make install prefix=/usr sysconfdir=/etc
+#+END_SRC
+
+Finally, in Emacs, evaluate ~(package-install 'exwm)~ and add
+~(exwm-initialize)~ to the Emacs initialization file. Now, when in GDM,
+after choosing a user, click the gear and choose EXWM.
+
+* How to
+
+** Change how Emacs is launched
+Create =$XDG_CONFIG_DIR/exwm/exwmrc= (typically =~/.config/exwm/exwmrc=),
+a shell script, for example:
+
+#+BEGIN_SRC sh
+  # Set SSH agent (GNOME Keyring Daemon)
+  eval $(gnome-keyring-daemon -s)
+  export SSH_AUTH_SOCK
+
+  # Launch Emacs
+  exec emacs
+#+END_SRC
+
+** Enable EXWM only when Emacs is launched from GDM
+Check if =$XDG_CURRENT_DESKTOP= equals =EXWM=, for example:
+
+#+BEGIN_SRC emacs-lisp
+  (when (string= (getenv "XDG_CURRENT_DESKTOP") "EXWM")
+    (exwm-enable))
+#+END_SRC
