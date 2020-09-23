@@ -29,8 +29,8 @@ after choosing a user, click the gear and choose EXWM.
 * How to
 
 ** Change how Emacs is launched
-Create =$XDG_CONFIG_DIR/exwm/exwmrc= (typically =~/.config/exwm/exwmrc=),
-a shell script, for example:
+Create =$XDG_CONFIG_DIR/exwm/exwmrc= (likely =~/.config/exwm/exwmrc=), a
+shell script, for example:
 
 #+BEGIN_SRC sh
   # Set SSH agent (GNOME Keyring Daemon)
